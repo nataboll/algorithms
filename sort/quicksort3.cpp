@@ -1,8 +1,14 @@
 #include <iostream>
 #include <vector>
 
-int partition(std::vector<int> &a, int l, int r) {
-    int i = l, j = r+1;
+struct Ptrs {
+    int j;
+    int lt;
+    int rt;
+};
+
+Ptrs partition(std::vector<int> &a, int l, int r) {
+    int i = l, j = r+1, lt = l, dt = l;
     while (true) {
         while (a[++i] < a[l])
             if (i == r) break;
@@ -12,14 +18,14 @@ int partition(std::vector<int> &a, int l, int r) {
         std::swap(a[i], a[j]);
     }
     std::swap(a[l], a[j]);
-    return j;
+    return Ptrs{j, lt, dt};
 }
 
 void quicksort(std::vector<int> &a, int l, int r) {
     if (l >= r) return;
-    int j = partition(a, l, r);
-    quicksort(a, l, j-1);
-    quicksort(a, j+1, r);
+    Ptrs p = partition(a, l, r);
+    quicksort(a, l, p.j-1);
+    quicksort(a, p.j+1, r);
 }
 
 int main() {

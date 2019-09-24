@@ -2,9 +2,11 @@
 #include <vector>
 
 void sort(std::vector<int> &a) {
-    for (int i = 1; i < a.size(); i++) {
-        for (int j = i; j > 0 && a[j-1] > a[j]; j--) 
-            std::swap(a[j-1], a[j]);
+    for (int i = 0; i < a.size()-1; i++) {
+        int m = i;
+        for (int j = i+1; j < a.size(); j++)
+            m = (a[j] < a[m]) ? j : m;
+        std::swap(a[i], a[m]);
     }
 }
 

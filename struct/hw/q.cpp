@@ -27,7 +27,7 @@ std::vector<int> kmp(std::string &s, std::string &t) {	// find s in t
 		if (k == s.length())
 			res.push_back(i - s.length() + 1);
 	}
-    	return res;
+    return res;
 }
 
 int main() {

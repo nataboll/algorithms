@@ -11,7 +11,6 @@ public:
     }
 
 private:
-
     int left(int i) const {
         return (i+1)*2-1;
     }
